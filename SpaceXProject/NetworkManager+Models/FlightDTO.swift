@@ -11,6 +11,7 @@ struct Docs: Codable {
     let docs: [FlightDTO]?
 }
 struct FlightDTO: Codable, Identifiable {
+    
     var id = UUID()
     let success: Bool?
     let name: String?

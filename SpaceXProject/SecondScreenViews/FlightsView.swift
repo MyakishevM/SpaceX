@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FlightsView: View {
+    
     var flightName: String = "Name"
     var flightDate: String = "date"
     var isSuccessfully: Bool = false
@@ -16,18 +17,19 @@ struct FlightsView: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 24)
-                    .fill(Color("DarkGrey"))
+                    .fill(Color("DarkGray"))
                 HStack {
                     VStack(alignment: .leading) {
                         Text(flightName)
                             .font(.custom("LabGrotesqueK-Regular", size: 20))
-                            .foregroundColor(Color("White"))
+                            .foregroundColor(Color("FirstScreenLabelsColor"))
                         Text(formatStringDate(flightDate))
                             .font(.custom("LabGrotesqueK-Regular", size: 16))
-                            .foregroundColor(Color("LightGrey"))
+                            .foregroundColor(Color("FirstScreenLabelsColor"))
                     }.padding(24)
                     Spacer()
-                    RocketIconView(isSuccesfully: isSuccessfully).padding(.trailing, 35)
+                    RocketIconView(isSuccesfully: isSuccessfully)
+                        .padding(.trailing, 35)
                 }
             }.frame(width: 311, height: 100)
         }

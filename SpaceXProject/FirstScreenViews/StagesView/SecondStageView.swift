@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SecondStageView: View, StagesProtocol {
+    
     var enginesQuantity: Int?
     var fuelAmountTons: Double?
     var burnTimeSec: Int?
@@ -18,10 +19,7 @@ struct SecondStageView: View, StagesProtocol {
             Text(title)
                 .font(.custom("LabGrotesqueK-Bold", size: 16))
                 .padding(.top, 40)
-                .foregroundColor(Color(#colorLiteral(red: 0.9719485641,
-                                                     green: 0.9719484448,
-                                                     blue: 0.9719484448,
-                                                     alpha: 1)))
+                .foregroundColor(Color("ValueLabelColor"))
 
             InfoParametersView(value: "\(enginesQuantity ?? 0)",
                                characteristic: "Количество двигателей",

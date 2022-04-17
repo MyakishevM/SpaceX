@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SecondScreenMainView: View {
-
+    
     @Environment(\.presentationMode) var presetrationMode
 
     @State var flights: [FlightDTO] = []
@@ -42,6 +42,7 @@ struct SecondScreenMainView: View {
                     ScrollView {
                         ForEach(flights) {flight in
                             FlightsView(flightName: flight.name ?? "", flightDate: flight.dateUTC ?? "", isSuccessfully: flight.success ?? false)
+                                .padding(.bottom, 16)
                         }
                     }.padding(.top, 50)
                 }

@@ -16,7 +16,7 @@ struct RocketNameAndSettingsButtonView: View {
             Text(rocketName ?? "")
                 .fontWeight(.regular)
                 .font(.custom("LabGrotesqueK-Regular", size: 24))
-                .foregroundColor(.white)
+                .foregroundColor(Color("ValueLabelColor"))
             Spacer(minLength: 135.67)
             Button {
                 //
@@ -24,10 +24,7 @@ struct RocketNameAndSettingsButtonView: View {
                 Image(systemName: "gearshape")
                     .renderingMode(.original)
                     .resizable()
-                    .foregroundColor(Color(#colorLiteral(red: 0.8308513761,
-                                                         green: 0.8308513761,
-                                                         blue: 0.8308513761,
-                                                         alpha: 1)))
+                    .foregroundColor(Color("FirstScreenLabelsColor"))
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25.71, height: 27.63)
             }

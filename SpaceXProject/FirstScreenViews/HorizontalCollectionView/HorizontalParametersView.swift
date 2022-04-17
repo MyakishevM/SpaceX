@@ -18,7 +18,7 @@ struct HorizontalParametersView: View {
 
         ZStack {
             RoundedRectangle(cornerRadius: 32)
-                .fill(Color("DarkGrey"))
+                .fill(Color("DarkGray"))
                 .frame(width: 96, height: 96)
             VStack(alignment: .center) {
                 Text(isSeparated ? formatValue(value) : value )
@@ -27,7 +27,7 @@ struct HorizontalParametersView: View {
                 Text(inscription)
                     .font(.custom("LabGrotesqueK-Regular", size: 16))
                 
-                    .foregroundColor(Color("LightGrey"))
+                    .foregroundColor(Color("LightGray"))
             }
         }
     }

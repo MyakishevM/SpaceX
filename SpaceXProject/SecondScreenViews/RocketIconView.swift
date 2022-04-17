@@ -10,6 +10,7 @@ import SwiftUI
 struct RocketIconView: View {
 
     var isSuccesfully = false
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Image("Rocket")

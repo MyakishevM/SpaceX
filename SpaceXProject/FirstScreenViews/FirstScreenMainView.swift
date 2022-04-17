@@ -9,22 +9,26 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct FirstScreenMainView: View {
+
     @State var rockets: [RocketDTO] = []
-    
+    @State var current = 0
+
     var body: some View {
         NavigationView {
                 if !rockets.isEmpty {
-                    ZStack {
+                    ZStack(alignment: .bottom) {
                     ScrollView {
-                        TabView {
+                        TabView(selection: $current) {
                             ForEach(rockets.indices, id: \.self) { index in
-                                CharacteriscticsView(pageNumber: index, numberOfPages: rockets.count, stringImageURL: rockets[index].flickrImages.first, rocketName: rockets[index].name, rocketID: rockets[index].rocketID, height: rockets[index].height?.feet, diameter: rockets[index].diameter?.feet, massInLb: rockets[index].mass?.lb, payloadWeightInLb: rockets[index].payloadWeights?.first?.lb, firstFlight: rockets[index].firstFlight, country: rockets[index].country, flightCost: rockets[index].costPerLaunch, firstStageEnginesQuantity: rockets[index].firstStage?.engines, firstStageFuelAmountTons: rockets[index].firstStage?.fuelAmountTons, firstStageBurnTimeSec: rockets[index].firstStage?.burnTimeSec, secondStageEnginesQuantity: rockets[index].secondStage?.engines, secondStageFuelAmountTons: rockets[index].secondStage?.fuelAmountTons, secondtageBurnTimeSec: rockets[index].secondStage?.burnTimeSec)
-                                    .animation(.easeIn, value: index)
+                                CharacteriscticsView(stringImageURL: rockets[index].flickrImages.first, rocketName: rockets[index].name, rocketID: rockets[index].rocketID, height: rockets[index].height?.feet, diameter: rockets[index].diameter?.feet, massInLb: rockets[index].mass?.lb, payloadWeightInLb: rockets[index].payloadWeights?.first?.lb, firstFlight: rockets[index].firstFlight, country: rockets[index].country, flightCost: rockets[index].costPerLaunch, firstStageEnginesQuantity: rockets[index].firstStage?.engines, firstStageFuelAmountTons: rockets[index].firstStage?.fuelAmountTons, firstStageBurnTimeSec: rockets[index].firstStage?.burnTimeSec, secondStageEnginesQuantity: rockets[index].secondStage?.engines, secondStageFuelAmountTons: rockets[index].secondStage?.fuelAmountTons, secondtageBurnTimeSec: rockets[index].secondStage?.burnTimeSec)
+
                             }
                         }
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     }
+                        CustomBarIndicatorView(count: rockets.count, current: $current)
+                            .animation(.easeOut, value: current)
                     }
                     .edgesIgnoringSafeArea(.all)
                 }
@@ -43,29 +47,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct PageControl: UIViewRepresentable {
-    var pageNumbers = 0
-var current = 0
-    func makeUIView(context: UIViewRepresentableContext<PageControl>) -> UIPageControl {
-
-        let pageControl = UIPageControl()
-        pageControl.pageIndicatorTintColor = .gray
-        pageControl.currentPageIndicatorTintColor = .black
-        pageControl.numberOfPages = pageNumbers
-        return pageControl
-    }
-
-    func updateUIView(_ uiView: UIPageControl, context: UIViewRepresentableContext<PageControl>) {
-        uiView.currentPage = current
-    }
-}
-
-struct PageControllView: View {
-    var index = 0
-    var body: some View {
-        ZStack {
-            Color("LightGrey")
-            PageControl(current: index)
-        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 11)
-    }
-}

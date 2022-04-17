@@ -9,11 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CharacteriscticsView: View {
-
-    @ObservedObject var model = GettingData()
-    @State var pageNumber = 0
-
-    var numberOfPages = 0
+    
     //MARK: -Image and name
     var stringImageURL: String?
     var rocketName: String?
@@ -59,50 +55,46 @@ struct CharacteriscticsView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     ZStack {
-                    ScrollView {
+                        ScrollView {
 
-                        //MARK: -Rocket name and button
+                            //MARK: -Rocket name and button
+                            RocketNameAndSettingsButtonView(rocketName: rocketName)
+                                .padding(.bottom, 32)
 
-                        RocketNameAndSettingsButtonView(rocketName: rocketName)
+                            //MARK: -Horizontal scroll elements
+                            HorizontalElementsView(height: height, diameter: diameter, massInLb: massInLb , payloadWeightInLb: payloadWeightInLb)
 
-                        //MARK: -Horizontal scroll elements
+                            //MARK: -Info
+                            InfoView(firstFlightDate: firstFlight, country: country, flightCost: flightCost)
 
-                        HorizontalElementsView(height: height, diameter: diameter, massInLb: massInLb , payloadWeightInLb: payloadWeightInLb)
+                            //MARK: -Stages
+                            VStack {
+                                FirstStageView(enginesQuantity: firstStageEnginesQuantity, fuelAmountTons: firstStageFuelAmountTons, burnTimeSec: firstStageBurnTimeSec, title: firstStageTitle)
+                                SecondStageView(enginesQuantity: secondStageEnginesQuantity, fuelAmountTons: secondStageFuelAmountTons, burnTimeSec: secondtageBurnTimeSec, title: secondStageTitle)
+                            }.padding(.top, 40)
 
-                        //MARK: -Info
+                            //MARK: Button
+                            NavigationLink(destination:SecondScreenMainView(title: rocketName ?? "" ,currentID: rocketID ?? "")) {
+                                Text("Посмотреть запуски")
+                                    .font(.custom("LabGrotesqueK-Bold", size: 16))
+                                    .padding()
+                                    .background(Color("DarkGray"))
+                                    .foregroundColor(Color("White"))
+                                    .cornerRadius(10)
+                            }
+                            .padding(.top, 40)
+                            .padding(.bottom, UIScreen.main.bounds.height / 11 + 40)
 
-                        InfoView(firstFlightDate: firstFlight, country: country, flightCost: flightCost)
-
-                        //MARK: -Stages
-
-                        VStack {
-                            FirstStageView(enginesQuantity: firstStageEnginesQuantity, fuelAmountTons: firstStageFuelAmountTons, burnTimeSec: firstStageBurnTimeSec, title: firstStageTitle)
-                            SecondStageView(enginesQuantity: secondStageEnginesQuantity, fuelAmountTons: secondStageFuelAmountTons, burnTimeSec: secondtageBurnTimeSec, title: secondStageTitle)
-                        }.padding(.top, 40)
-
-                        //MARK: Button
-
-                        NavigationLink(destination:SecondScreenMainView(title: rocketName ?? "" ,currentID: rocketID ?? "")) {
-                            Text("Посмотреть запуски")
-                                .font(.custom("LabGrotesqueK-Bold", size: 16))
-                                .padding()
-                                .background(Color("DarkGrey"))
-                                .foregroundColor(Color("White"))
-                                .cornerRadius(10)
-                        }
-                        .padding(.top, 40)
-                        .padding(.bottom, 40)
-
-                    }.padding(.horizontal, 32)
-                        .padding(.top, 48)
-                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 1.75)
-                        .background(Color("Black"))
-                        .cornerRadius(32)
+                        }.padding(.horizontal, 32)
+                            .padding(.top, 48)
+                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 1.75)
+                            .background(Color("Black"))
+                            .cornerRadius(32)
                     }
                 }
             }
         }
-        }
+    }
 }
 
 struct SwiftUIView_Previews: PreviewProvider {

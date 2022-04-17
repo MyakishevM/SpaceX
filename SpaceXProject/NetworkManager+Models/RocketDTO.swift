@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RocketDTO: Codable, Identifiable {
+    
     var rocketID: String?
     var pageNumber = 0
     var id = UUID()

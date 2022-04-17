@@ -8,11 +8,11 @@
 import Foundation
 
 class NetworkManager {
+    
     let urlScheme = "https"
     let urlHost = "api.spacexdata.com"
     let rocketsPath = "/v4/rockets"
     let flightsPath = "/v4/launches/query"
-
 
     func loadRocketsData(completion: @escaping ([RocketDTO]) -> Void) {
         let configuration = URLSessionConfiguration.default
